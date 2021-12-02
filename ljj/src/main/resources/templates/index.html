@@ -5,33 +5,118 @@
     <meta charset="UTF-8">
     <title>首页</title>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
 
 
 </head>
 <style>
-    *{
+    * {
         margin: 0px;
         padding: 0px;
     }
-    h1{
+
+    h1 {
         text-align: center;
     }
-    #box{
-        width: 50%;
-        border: 1px solid red;
-        margin: 0px auto;
+
+    #context {
+        width: 80%;
+        margin: 10px auto;
+
+        overflow: hidden;
     }
 
+    .box {
+        width: 230px;
+
+        float: left;
+    }
+
+    .box .a {
+        width: 90%;
+        overflow: hidden;
+    }
+
+    .box img {
+        width: 100%;
+        overflow: hidden;
+
+    }
+
+    .box p {
+        font-size: 20px;
+        font-weight: 700;
+
+    }
+
+    .box .b span {
+        display: inline-block;
+
+        padding: 1px;
+    }
+
+    .box .c a {
+        margin-left: 90px;
+
+    }
+
+    .box .c {
+        color: red;
+    }
+
+    .box .c span {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .box .d {
+        margin: 2px;
+        font-size: 14px;
+        color: #b6b4af;
+    }
+
+    .box .d span {
+        font-size: 14px;
+        color: black;
+    }
 </style>
 <body>
 <h1>welcome to index</h1>
 
-<div id="box">
 
+<div id="context">
+    <div class="box" th:each="product : ${products}">
+        <div class="a">
+            <img th:src="${product.imgurl}" class="img-thumbnail">
+        </div>
+
+        <p th:text="${product.name}"></p>
+        <div class="b">
+            <span th:text="${product.category}"></span>
+            &nbsp;
+            <span th:text="${product.brand}"></span>
+        </div>
+
+        <div class="c">
+            ￥
+            <span th:text="${product.univalence}"></span>
+            <a th:href="@{'/product/'+${product.id}}" class="btn btn-primary btn-sm active" role="button">编辑商品</a>
+        </div>
+
+        <div class="d">
+            <span th:text="|销售量:${product.sales}|">销售量:</span>
+
+            /
+            <span th:text="|库存量:${product.numbers}|">库存量:</span>
+        </div>
+
+    </div>
 </div>
 
-</table>
-<div></div>
+
+
+
+<footer><h1>By LIU JIAJUN</h1></footer>
 </body>
 </html>
