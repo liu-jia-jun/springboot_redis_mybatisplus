@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加商品</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+          integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+</head>
+<style>
+    h1 {
+        text-align: center;
+    }
+
+    table {
+        text-align: center;
+
+        margin: 10px auto;
+
+    }
+
+    td {
+        width: 300px;
+        height: 50px;
+    }
+
+    input {
+        width: 300px;
+        height: 30px;
+    }
+    p{
+        text-align: center;
+    }
+</style>
+<body>
+<h1>Edit The Product</h1>
+<form>
+    <table>
+        <tr class="form-group">
+            <td><label for="Product_Name">Product Name</label></td>
+            <td><input type="text" class="form-control input-lg" id="Product_Name" placeholder="商品名称"
+                       th:value="${product.name}"></td>
+        </tr>
+
+
+        <tr class="form-group">
+            <td><label for="ProductUnivalence">Product Univalence</label></td>
+            <td><input type="number" class="form-control" id="ProductUnivalence" placeholder="商品单价"
+                       th:value="${product.univalence}"></td>
+        </tr>
+
+
+        <tr class="form-group">
+            <td><label for="Product_Brand">Product Brand</label></td>
+            <td><input type="text" class="form-control" id="Product_Brand" placeholder="商品品牌"
+                       th:value="${product.brand}"></td>
+        </tr>
+        <tr class="form-group">
+            <td><label for="Product_Category">Product Category</label></td>
+            <td><input type="text" class="form-control" id="Product_Category" placeholder="商品类别"
+                       th:value="${product.category}"></td>
+        </tr>
+        <tr class="form-group">
+            <td><label for="Product_Sales">Product Sales</label></td>
+            <td><input type="text" class="form-control" id="Product_Sales" placeholder="商品销售量"
+                       th:value="${product.category}"></td>
+        </tr>
+        <tr class="form-group">
+            <td><label for="Product_Numbers">Product Numbers</label></td>
+            <td><input type="text" class="form-control" id="Product_Numbers" placeholder="商品数量"
+                       th:value="${product.numbers}"></td>
+        </tr>
+        <tr class="form-group">
+            <td><label for="Product_ImgUrl">Product ImgUrl</label></td>
+            <td><input type="text" class="form-control" id="Product_ImgUrl" placeholder="商品图片"
+                       th:value="${product.imgurl}"></td>
+        </tr>
+
+        <tr>
+            <td colspan="2" style="text-align: center">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </td>
+        </tr>
+
+    </table>
+</form>
+<p  >
+   <a href="#" class="btn   btn-lg btn-danger active" role="button">Delete The Product</a>
+</p>
+
+
+</body>
+</html>

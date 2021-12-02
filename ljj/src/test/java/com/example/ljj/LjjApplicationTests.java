@@ -9,10 +9,13 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class LjjApplicationTests {
 
+    @Autowired(required = false)
+    ProductMapper productMapper;
+
     @Test
     void contextLoads() {
 
-
+        System.out.println(productMapper.selectById(1));
     }
 
 }
