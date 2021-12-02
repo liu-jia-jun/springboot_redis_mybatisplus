@@ -35,7 +35,7 @@
 </style>
 <body>
 <h1>Edit The Product</h1>
-<form>
+<form th:action="@{'/product/update/'+${product.id}}" method="post" enctype="application/x-www-form-urlencoded">
     <table>
         <tr class="form-group">
             <td><label for="Product_Name">Product Name</label></td>
