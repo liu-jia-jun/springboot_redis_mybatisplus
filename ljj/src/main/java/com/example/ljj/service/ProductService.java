@@ -10,4 +10,6 @@ public interface ProductService {
 
     Product selectProduct(Integer id);
 
+    boolean deleteProductById(Integer id);
+
 }

@@ -48,6 +48,16 @@ public class ProduceController {
         System.out.println("+++++++++id+++++++++"+id);
         System.out.println("+++++++++product+++++++++"+product);
 
+        return "/index";
+    }
+
+    @GetMapping("/product/delete/{id}")
+    public String deleteProduct(@PathVariable(name = "id")Integer id){
+
+        boolean b = productService.deleteProductById(id);
+
+        System.out.println(b);
+
         return "index";
     }
 
