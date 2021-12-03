@@ -30,4 +30,10 @@ public class ProductServiceImpl implements ProductService {
         int i = productMapper.deleteById(id);
         return i > 0 ? true : false;
     }
+
+    @Override
+    public boolean updateProductById(Product product) {
+
+        return product.updateById();
+    }
 }

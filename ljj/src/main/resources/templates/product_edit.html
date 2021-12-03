@@ -2,11 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>添加商品</title>
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
           integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
-
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.21.1/axios.min.js"></script>
 </head>
 <style>
     h1 {
@@ -29,13 +32,17 @@
         width: 300px;
         height: 30px;
     }
-    p{
+
+    p {
         text-align: center;
     }
 </style>
 <body>
+
+
 <h1>Edit The Product</h1>
-<form th:action="@{'/product/update/'+${product.id}}" method="post" enctype="application/x-www-form-urlencoded">
+<form action="/product/update" method="post" id="form" enctype="application/x-www-form-urlencoded">
+    <input type="hidden" th:value="${product.id}" name="id">
     <table>
         <tr class="form-group">
             <td><label for="Product_Name">Product Name</label></td>
@@ -47,7 +54,7 @@
         <tr class="form-group">
             <td><label for="ProductUnivalence">Product Univalence</label></td>
             <td><input type="number" class="form-control" id="ProductUnivalence" placeholder="商品单价"
-                       th:value="${product.univalence}" name="umivalence"></td>
+                       th:value="${product.univalence}" name="univalence"></td>
         </tr>
 
 
@@ -64,7 +71,7 @@
         <tr class="form-group">
             <td><label for="Product_Sales">Product Sales</label></td>
             <td><input type="text" class="form-control" id="Product_Sales" placeholder="商品销售量"
-                       th:value="${product.category}" name="sales"></td>
+                       th:value="${product.sales}" name="sales"></td>
         </tr>
         <tr class="form-group">
             <td><label for="Product_Numbers">Product Numbers</label></td>
@@ -79,16 +86,70 @@
 
         <tr>
             <td colspan="2" style="text-align: center">
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="button" class="btn btn-default" id="submit_button">Submit</button>
             </td>
         </tr>
 
     </table>
 </form>
-<p  >
-   <a href="#" class="btn   btn-lg btn-danger active" role="button">Delete The Product</a>
+<p>
+    <a th:href="@{'/product/delete/'+${product.id}}" class="btn   btn-lg btn-danger active" role="button">Delete The
+        Product</a>
 </p>
+<script type="text/javascript">
+    // function onSubmit() {
+    //     var finalRes = $('#form').serializeArray().reduce(function(result, item){
+    //          result[item.name] = item.value;
+    //         return result;
+    //     }, {})
+    //     console.log(finalRes)
+    //
+    //    // finalRes= JSON.stringify(finalRes)
+    //
+    //     $.ajax({
+    //         type: 'POST',
+    //         url: '/product/update',
+    //         data: finalRes,
+    //         // dataType: 'json',
+    //         // contentType: 'application/x-www-form-urlencoded',
+    //         contentType: 'application/json',
+    //
+    //         success: function (data) {
+    //             console.log(data)
+    //         },
+    //         error: function (jqXHR) {
+    //             console.log(jqXHR)
+    //         },
+    //     })
+    // }
 
+    document.querySelector("#submit_button").addEventListener("click",function (){
+        // 获取form表单中所有的数据
+        var finalRes = $('#form').serializeArray().reduce(function(result, item){
+            result[item.name] = item.value;
+            return result;
+        }, {})
+        console.log(finalRes)
+
+
+        axios({// 查询
+            method: "POST",
+            url: "/product/update",
+            // contentType: 'application/json',
+            data: finalRes,
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            }
+
+        }).then(response => {
+           alert(response.data)
+
+        })
+    })
+
+
+
+</script>
 
 </body>
 </html>

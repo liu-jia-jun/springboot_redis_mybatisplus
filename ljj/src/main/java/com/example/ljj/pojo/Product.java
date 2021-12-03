@@ -5,11 +5,12 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.activerecord.Model;
 
 import java.math.BigDecimal;
 
 @TableName(value = "test_product")
-public class Product  {
+public class Product extends Model<Product> {
     @TableId(value = "id",type = IdType.AUTO)
     private Integer id;
     @TableField(value = "name")
@@ -23,7 +24,7 @@ public class Product  {
     @TableField(value = "sales")
     private Integer sales;
     @TableField(value = "univalence")
-    private BigDecimal univalence;
+    private Integer univalence;
     @TableField(value = "imgurl")
     private String imgurl;
 
@@ -89,11 +90,11 @@ public class Product  {
         this.sales = sales;
     }
 
-    public BigDecimal getUnivalence() {
+    public Integer getUnivalence() {
         return univalence;
     }
 
-    public void setUnivalence(BigDecimal univalence) {
+    public void setUnivalence(Integer univalence) {
         this.univalence = univalence;
     }
 
