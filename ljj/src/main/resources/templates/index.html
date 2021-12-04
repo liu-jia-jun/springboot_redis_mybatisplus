@@ -34,7 +34,9 @@
     }
 
     .box .a {
-        width: 90%;
+        width: 184px;
+        height: 184px;
+        text-align: center;
         overflow: hidden;
     }
 
@@ -80,11 +82,27 @@
         font-size: 14px;
         color: black;
     }
+
+    .e{
+        display: inline-block;
+        width: 380px;
+        margin-left: 315px;
+    }
+
 </style>
 <body>
 <h1>welcome to index</h1>
 
+<div>
 
+    <div class="form-group e" >
+        <input type="search" class="form-control" id="exampleInputEmail1" placeholder="搜索">
+    </div>
+    <button class="btn btn-default" type="button">Search</button>
+    <a class="btn btn-default" href="#" role="button">Add A Product</a>
+
+
+</div>
 <div id="context">
     <div class="box" th:each="product : ${products}">
         <div class="a">

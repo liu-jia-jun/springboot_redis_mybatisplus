@@ -14,6 +14,8 @@
 <style>
     h1 {
         text-align: center;
+        display: inline-block;
+        width: 70%;
     }
 
     table {
@@ -40,7 +42,8 @@
 <body>
 
 
-<h1>Edit The Product</h1>
+<h1>Edit The Product</h1> <a th:href="@{'/index'}" class="btn   btn-lg  active" role="button">Back The
+    Index</a>
 <form action="/product/update" method="post" id="form" enctype="application/x-www-form-urlencoded">
     <input type="hidden" th:value="${product.id}" name="id">
     <table>
@@ -66,7 +69,7 @@
         <tr class="form-group">
             <td><label for="Product_Category">Product Category</label></td>
             <td><input type="text" class="form-control" id="Product_Category" placeholder="商品类别"
-                       th:value="${product.category}" name="catetgory"></td>
+                       th:value="${product.category}" name="category"></td>
         </tr>
         <tr class="form-group">
             <td><label for="Product_Sales">Product Sales</label></td>

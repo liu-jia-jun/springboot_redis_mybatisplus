@@ -51,23 +51,25 @@ public class ProduceController {
 //            produces = {MediaType.APPLICATION_ATOM_XML_VALUE, MediaType.APPLICATION_JSON_VALUE})
     @PostMapping(value = "/product/update", consumes = MediaType.ALL_VALUE)
     @ResponseBody
-    public String updateProduct(@RequestBody Product product, CassandraProperties.Request request) {
+    public String updateProduct(@RequestBody Product product) {
 
         System.out.println("+++++++++product+++++++++" + product);
 
         boolean b = productService.updateProductById(product);
-        return b == true ? "修改成功" : "修改失败";
+        return b ? "修改成功" : "修改失败";
     }
 
     @GetMapping("/product/delete/{id}")
     public String deleteProduct(@PathVariable(name = "id") Integer id) {
 
         boolean b = productService.deleteProductById(id);
-
-        System.out.println(b);
-
         return "redirect:/index";
     }
 
+
+    @GetMapping("/product/add")
+    public String addProduct(){
+        return "/product_add";
+    }
 
 }
