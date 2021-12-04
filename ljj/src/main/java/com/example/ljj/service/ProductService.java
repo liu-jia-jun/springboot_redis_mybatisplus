@@ -8,6 +8,8 @@ public interface ProductService {
 
     List<Product> selectAllProduct();
 
+    List<Product> selectProductByKeyWord(String keyword);
+
     Product selectProduct(Integer id);
 
     boolean deleteProductById(Integer id);

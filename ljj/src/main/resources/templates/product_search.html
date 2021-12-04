@@ -94,17 +94,15 @@
 
 </style>
 <body>
-<h1>welcome to index</h1>
+<h1>Search Product</h1>
 
 <div>
 
     <div class="form-group e" >
         <input type="search" class="form-control" id="search" placeholder="搜索">
     </div>
-<!--    <input class="btn btn-default" type="submit" id="button_search" th:value="Search">-->
-    <a class="btn btn-default" th:href="@{'/product/to_add'}"id="a_search" role="button">Search</a>
+    <button class="btn btn-default" type="button" id="button_search">Search</button>
     <a class="btn btn-default" th:href="@{'/product/to_add'}" role="button">Add A Product</a>
-
 
 
 </div>
@@ -137,42 +135,19 @@
     </div>
 </div>
 <script>
-    // document.querySelector("#button_search").addEventListener("click",function (){
-    //
-    //    var keyword = document.querySelector("#search").value
-    //
-    //     axios({
-    //         method:"get",
-    //         url:"/product/search/"+keyword,
-    //     }).then(response=>{
-    //         console.log(response)
-    //     })
-    //
-    // })
-
-    document.querySelector("#a_search").addEventListener("click",function (e){
-        console.log(1)
-        e.preventDefault()
+    document.querySelector("#button_search").addEventListener("click",function (){
 
         var keyword = document.querySelector("#search").value
-        var url
-        if(keyword==""){
-            // url= "http://localhost:8080/product/search/"
-            url = "http://localhost:8080/product/search/"+"_all_"
-        }else{
-            url = "http://localhost:8080/product/search/"+keyword
-        }
 
-
-
-
-        // $("#a_search").attr("href",url)
-        location.href=url
-
-        console.log($("#a_search").href)
-        // $("#a_search").unbind()
+        axios({
+            method:"get",
+            url:"/product/search/"+keyword,
+        }).then(response=>{
+            console.log(response)
+        })
 
     })
+
 
 
 </script>

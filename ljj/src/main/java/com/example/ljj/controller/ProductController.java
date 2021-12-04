@@ -11,6 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
+/**
+ * @author asus
+ */
 @Controller
 public class ProductController {
 
@@ -67,25 +70,29 @@ public class ProductController {
 
 
     @GetMapping("/product/to_add")
-    public String toAdd(){
+    public String toAdd() {
         return "product_add";
     }
-    @PostMapping(value = "/product/add",consumes = MediaType.ALL_VALUE)
+
+    @PostMapping(value = "/product/add", consumes = MediaType.ALL_VALUE)
     @ResponseBody
-    public String addProduct(@RequestBody Product product){
+    public String addProduct(@RequestBody Product product) {
         boolean b = productService.insertProduct(product);
 
-        return b?"添加成功":"添加失败";
+        return b ? "添加成功" : "添加失败";
     }
 
-    @GetMapping("/product/search/{keyword}")
-    public ModelAndView toSearch(@PathVariable(name = "keyword")String keyword, ModelAndView modelAndView){
-
-        System.out.println(keyword);
-        modelAndView.addObject("products",keyword);
-        modelAndView.setViewName("redirect:/index");
-
-        return modelAndView;
+    @GetMapping(value = "/product/search/{keyword}", consumes = MediaType.ALL_VALUE)
+    public String toSearch(@PathVariable String keyword, Model model) {
+        List<Product> products = null;
+        if ("_all_".equals(keyword)) {
+            products = productService.selectAllProduct();
+        } else {
+            products = productService.selectProductByKeyWord(keyword);
+        }
+        model.addAttribute("products", products);
+        return "index";
     }
+
 
 }
