@@ -14,4 +14,6 @@ public interface ProductService {
 
     boolean updateProductById(Product product);
 
+    boolean insertProduct(Product product);
+
 }

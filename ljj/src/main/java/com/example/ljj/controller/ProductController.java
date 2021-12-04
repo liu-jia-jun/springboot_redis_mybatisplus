@@ -3,7 +3,6 @@ package com.example.ljj.controller;
 import com.example.ljj.pojo.Product;
 import com.example.ljj.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.cassandra.CassandraProperties;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +11,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-public class ProduceController {
+public class ProductController {
+
 
     @Autowired
     ProductService productService;
@@ -28,8 +28,6 @@ public class ProduceController {
     public String toIndex(Model model) {
 
         List<Product> products = productService.selectAllProduct();
-
-
         model.addAttribute("products", products);
         return "index";
     }
@@ -67,9 +65,16 @@ public class ProduceController {
     }
 
 
-    @GetMapping("/product/add")
-    public String addProduct(){
-        return "/product_add";
+    @GetMapping("/product/to_add")
+    public String toAdd(){
+        return "product_add";
+    }
+    @PostMapping(value = "/product/add",consumes = MediaType.ALL_VALUE)
+    @ResponseBody
+    public String addProduct(@RequestBody Product product){
+        boolean b = productService.insertProduct(product);
+
+        return b?"添加成功":"添加失败";
     }
 
 }

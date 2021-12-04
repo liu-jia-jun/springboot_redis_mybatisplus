@@ -30,6 +30,7 @@
     .box {
         width: 230px;
         margin-right: 5px;
+        margin-top: 10px;
         float: left;
     }
 
@@ -99,7 +100,7 @@
         <input type="search" class="form-control" id="exampleInputEmail1" placeholder="搜索">
     </div>
     <button class="btn btn-default" type="button">Search</button>
-    <a class="btn btn-default" href="#" role="button">Add A Product</a>
+    <a class="btn btn-default" th:href="@{'/product/to_add'}" role="button">Add A Product</a>
 
 
 </div>

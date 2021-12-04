@@ -28,6 +28,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public boolean deleteProductById(Integer id) {
         int i = productMapper.deleteById(id);
+
         return i > 0 ? true : false;
     }
 
@@ -35,5 +36,11 @@ public class ProductServiceImpl implements ProductService {
     public boolean updateProductById(Product product) {
 
         return product.updateById();
+    }
+
+    @Override
+    public boolean insertProduct(Product product) {
+
+       return productMapper.insert(product)>0 ? true:false;
     }
 }
