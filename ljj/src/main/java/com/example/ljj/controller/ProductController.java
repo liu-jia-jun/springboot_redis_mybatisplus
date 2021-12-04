@@ -7,6 +7,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -75,6 +76,16 @@ public class ProductController {
         boolean b = productService.insertProduct(product);
 
         return b?"添加成功":"添加失败";
+    }
+
+    @GetMapping("/product/search/{keyword}")
+    public ModelAndView toSearch(@PathVariable(name = "keyword")String keyword, ModelAndView modelAndView){
+
+        System.out.println(keyword);
+        modelAndView.addObject("products",keyword);
+        modelAndView.setViewName("redirect:/index");
+
+        return modelAndView;
     }
 
 }
