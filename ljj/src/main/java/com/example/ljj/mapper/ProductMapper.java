@@ -7,6 +7,9 @@ import org.apache.ibatis.annotations.Mapper;
 import java.util.List;
 
 
+/**
+ * @author asus
+ */
 @Mapper
 public interface ProductMapper extends BaseMapper<Product> {
     List<Product> selectAllProduct();

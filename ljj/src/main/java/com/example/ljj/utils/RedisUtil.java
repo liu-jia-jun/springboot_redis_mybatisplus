@@ -65,6 +65,9 @@ public final class RedisUtil {
      */
     @SuppressWarnings("unchecked")
     public void del(String... key) {
+
+
+
         if (key != null && key.length > 0) {
             if (key.length == 1) {
                 redisTemplate.delete(key[0]);
@@ -389,7 +392,7 @@ public final class RedisUtil {
      * 获取list缓存的内容
      * @param key 键
      * @param start 开始
-     * @param end 结束  到 -代表所有值
+     * @param end 结束  到 -1代表所有值
      * @return
      */
     public List<Object> lGet(String key, long start, long end) {
@@ -442,6 +445,7 @@ public final class RedisUtil {
     public boolean lSet(String key, Object value) {
         try {
             redisTemplate.opsForList().rightPush(key, value);
+
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -544,5 +548,7 @@ public final class RedisUtil {
         }
 
     }
+
+
 
 }

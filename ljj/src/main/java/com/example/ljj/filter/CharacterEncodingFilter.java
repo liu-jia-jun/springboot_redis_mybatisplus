@@ -6,7 +6,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-//import java.io.IOException;
+
 
 //字符编码过滤器
 @WebFilter(urlPatterns = "/*",filterName = "CharacterEncodingFilter")
