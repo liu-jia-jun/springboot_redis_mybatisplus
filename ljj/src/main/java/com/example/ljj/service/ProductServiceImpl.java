@@ -1,6 +1,5 @@
 package com.example.ljj.service;
 
-import com.alibaba.fastjson.JSON;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.ljj.mapper.ProductMapper;
 import com.example.ljj.pojo.Product;
@@ -12,7 +11,6 @@ import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -49,7 +47,7 @@ public class ProductServiceImpl implements ProductService {
 //        return products;
 //    }
     @Override
-    @Cacheable()
+    @Cacheable
     public List<Product> selectAllProduct() {
 
         return productMapper.selectAllProduct();
@@ -79,14 +77,14 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    @CacheEvict(key = "#product.id")
+//    @CachePut(key = "#product.id")
     public boolean updateProductById(Product product) {
 
         return product.updateById();
     }
 
     @Override
-    @CachePut(key = "#product.id")
+//    @CachePut(key = "#product.id")
     public boolean insertProduct(Product product) {
 
         return productMapper.insert(product) > 0 ? true : false;
